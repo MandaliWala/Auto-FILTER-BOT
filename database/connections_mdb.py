@@ -4,15 +4,19 @@
 
 import pymongo
 
-from info import DATABASE_URI, DATABASE_NAME
-
+from sample_info import tempDict
+from info import DATABASE_URI, DATABASE_NAME, SECONDDB_URI
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 myclient = pymongo.MongoClient(DATABASE_URI)
 mydb = myclient[DATABASE_NAME]
-mycol = mydb['CONNECTION']   
+mycol = mydb['CONNECTION']  
+
+myclient2 = pymongo.MongoClient(SECONDDB_URI)
+mydb2 = myclient2[DATABASE_NAME]
+mycol2 = mydb2['CONNECTION']  
 
 
 async def add_connection(group_id, user_id):
@@ -35,10 +39,14 @@ async def add_connection(group_id, user_id):
         'active_group' : group_id,
     }
 
-    if mycol.count_documents( {"_id": user_id} ) == 0:
+    if mycol.count_documents( {"_id": user_id} ) == 0 and mycol2.count_documents( {"_id": user_id} ) == 0:
         try:
-            mycol.insert_one(data)
-            return True
+            if tempDict['indexDB'] == DATABASE_URI:
+                mycol.insert_one(data)
+                return True
+            else:
+                mycol2.insert_one(data)
+                return True
         except:
             logger.exception('Some error occurred!', exc_info=True)
 

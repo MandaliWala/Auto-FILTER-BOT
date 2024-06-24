@@ -86,9 +86,9 @@ Cᴏᴍᴍᴀɴᴅs Aɴᴅ Usᴀɢᴇ:
     EXTRAMOD_TXT = """ʜᴇʟᴘ: Exᴛʀᴀ Mᴏᴅᴜʟᴇs
 <b>ɴᴏᴛᴇ:</b>
 my features Stay here new features coming soon...  
- <b>✯ Maintained by : <a href=https://t.me/Spider_Man_02>☢VJ☢</a></b>
+ <b>✯ Maintained by : <a href=https://t.me/Spider_Man_02>ꜱᴘɪᴅᴇʀ_ᴍᴀɴ_02</a></b>
   
- <b>✯ Join here : <a href=https://t.me/MovieTimes_TV>☢Join my updateds☢</a></b> 
+ <b>✯ Join here : <a href=https://t.me/MovieTimes_TV>☢Join my updates☢</a></b> 
   
  ./id - <code>ɢᴇᴛ ɪᴅ ᴏꜰ ᴀ ꜱᴘᴇᴄɪꜰɪᴇᴅ ᴜꜱᴇʀ.</ 
  code> 

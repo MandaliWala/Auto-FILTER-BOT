@@ -21,7 +21,7 @@ async def pm_broadcast(bot, message):
         deleted = 0
         failed = 0
         success = 0
-        async for user in users:
+        for user in users:
             if 'id' in user:
                 pti, sh = await broadcast_messages(int(user['id']), b_msg)
                 if pti:
@@ -65,7 +65,7 @@ async def broadcast_group(bot, message):
     failed = 0
 
     success = 0
-    async for group in groups:
+    for group in groups:
         pti, sh = await broadcast_messages_group(int(group['id']), b_msg)
         if pti:
             success += 1

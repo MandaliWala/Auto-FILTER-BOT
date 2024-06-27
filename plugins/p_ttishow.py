@@ -170,11 +170,9 @@ async def get_ststs(bot, message):
     #secondary db
     totalsec = await Media2.count_documents()
     #primary
-    files = await Media.count_documents()
-    size = await db.get_db_size()
-    free = 536870912 - size
-    size = get_size(size)
-    free = get_size(free)
+    stats = await clientDB.command('dbStats')
+    used_dbSize = (stats['dataSize']/(1024*1024))+(stats['indexSize']/(1024*1024))
+    free_dbSize = 512-used_dbSize
     #secondary
     stats2 = await clientDB2.command('dbStats')
     used_dbSize2 = (stats2['dataSize']/(1024*1024))+(stats2['indexSize']/(1024*1024))

@@ -184,7 +184,7 @@ async def delete_connection(user_id, group_id):
                     )
                 return True
         else:
-             query = mycol.find_one(
+            query = mycol.find_one(
                 { "_id": user_id },
                 { "_id": 0 }
             )
@@ -205,4 +205,3 @@ async def delete_connection(user_id, group_id):
     except Exception as e:
         logger.exception(f'Some error occurred! {e}', exc_info=True)
         return False
-

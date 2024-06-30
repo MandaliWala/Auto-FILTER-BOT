@@ -1,11 +1,11 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
+# Don't Remove Credit @Tonystark_botz
+# Ask Doubt on telegram @Spider_Man_02
 
 import logging, re, asyncio
 from utils import temp
 from info import ADMINS
 from pyrogram import Client, filters, enums
+from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, ChatAdminRequired, UsernameInvalid, UsernameNotModified
 from info import INDEX_REQ_CHANNEL as LOG_CHANNEL
 from database.ia_filterdb import save_file

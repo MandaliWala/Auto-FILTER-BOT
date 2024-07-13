@@ -43,5 +43,4 @@ dnspython==2.3.0
 ffmpeg-python>=0.2.0
 pyromod==1.5
 openai==0.25.0
-speedtest-cli git+https://github.com/weebzone/WZML-X/blob/master/bot/modules/speedtest.py
 git+https://github.com/Joelkb/cinemagoer

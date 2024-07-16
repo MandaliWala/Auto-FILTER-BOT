@@ -737,3 +737,52 @@ async def get_seconds(time_string):
         return value * 86400 * 365
     else:
         return 0
+
+def get_readable_time(seconds):
+    periods = [('days', 86400), ('hour', 3600), ('min', 60), ('sec', 1)]
+    result = ''
+    for period_name, period_seconds in periods:
+        if seconds >= period_seconds:
+            period_value, seconds = divmod(seconds, period_seconds)
+            result += f'{int(period_value)}{period_name}'
+    return result
+
+async def react_msg(client, message):
+    emojis = [
+        "👍",
+        "❤",
+        "🔥",
+        "🥰",
+        "👏",
+        "😁",
+        "🤔",
+        "😱",
+        "🎉",
+        "🤩",
+        "🤡",
+        "😍",
+        "❤‍🔥",
+        "🌚",
+        "🤣",
+        "⚡",
+        "🏆",
+        "🤨",
+        "😐",
+        "😈",
+        "🤓",
+        "👻",
+        "😇",
+        "🤝",
+        "🤗",
+        "🫡",
+        "🎅",
+        "🎄",
+        "🆒",
+        "😘",
+        "😎",
+    ]
+    rnd_emoji = random.choice(emojis)
+    await client.send_reaction(
+        chat_id=message.chat.id, message_id=message.id, emoji=rnd_emoji, big=True
+    )
+    return

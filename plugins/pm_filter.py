@@ -297,7 +297,7 @@ async def advantage_spoll_choker(bot, query):
                 ]]
                 if NO_RESULTS_MSG:
                     await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-                k = await reply_msg.edit_text(text=scrpit.script.MVE_NT_FND, reply_markup=InlineKeyboardMarkup(button))
+                k = await reply_msg.edit_text(text=script.MVE_NT_FND, reply_markup=InlineKeyboardMarkup(button))
                 await asyncio.sleep(10)
                 await k.delete()
 

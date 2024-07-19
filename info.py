@@ -112,7 +112,7 @@ MSG_ALRT = environ.get('MSG_ALRT', ' ᴅᴀᴛᴛᴇʙᴀʏᴏ ​!! ')
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", """{file_caption}
 🎬 Quality: {quality}
 ⏳ Duration: {duration}
-💥 𝙅𝙊𝙄𝙉 : @MovieTimesTV
+
 💥 𝙊𝙒𝙉𝙀𝙍 : @Spider_Man_02
 """)
 BATCH_FILE_CAPTION = environ.get("BATCH_FILE_CAPTION", CUSTOM_FILE_CAPTION)

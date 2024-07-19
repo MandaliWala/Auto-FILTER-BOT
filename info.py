@@ -110,7 +110,6 @@ MAX_B_TN = environ.get("MAX_B_TN", "5")
 PORT = environ.get("PORT", "8080")
 MSG_ALRT = environ.get('MSG_ALRT', ' ᴅᴀᴛᴛᴇʙᴀʏᴏ ​!! ')
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", """{file_caption}
-⏳ Duration: {duration}
 💾 Size: {filesize}
 
 💥 𝙊𝙒𝙉𝙀𝙍 : @Spider_Man_02

@@ -5,7 +5,7 @@
 import os, logging, time
 from pyrogram import Client, filters, enums
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from info import IMDB_TEMPLATE
+from info import IMDB_TEMPLATE, ADMINS
 from speedtest import Speedtest, ConfigRetrievalError
 from utils import extract_user, get_file_id, get_poster, get_size, last_online
 from datetime import datetime

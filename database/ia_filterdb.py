@@ -29,11 +29,8 @@ instance = Instance.from_db(db)
 @instance.register
 class Media(Document):
     file_id = fields.StrField(attribute='_id')
-    file_ref = fields.StrField(allow_none=True)
     file_name = fields.StrField(required=True)
     file_size = fields.IntField(required=True)
-    file_type = fields.StrField(allow_none=True)
-    mime_type = fields.StrField(allow_none=True)
     caption = fields.StrField(allow_none=True)
 
     class Meta:
@@ -48,11 +45,8 @@ instance2 = Instance.from_db(db2)
 @instance2.register
 class Media2(Document):
     file_id = fields.StrField(attribute='_id')
-    file_ref = fields.StrField(allow_none=True)
     file_name = fields.StrField(required=True)
     file_size = fields.IntField(required=True)
-    file_type = fields.StrField(allow_none=True)
-    mime_type = fields.StrField(allow_none=True)
     caption = fields.StrField(allow_none=True)
 
     class Meta:
@@ -75,6 +69,7 @@ async def save_file(media):
     # TODO: Find better way to get same file_id for same media to avoid duplicates
     file_id, file_ref = unpack_new_file_id(media.file_id)
     file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
+    file_caption = re.sub(r"@\w+|(_|\-|\.|\+)", " ", str(media.caption))
     try:
         if await Media.count_documents({'file_id': file_id}, limit=1):
             logger.warning(f'{getattr(media, "file_name", "NO_FILE")} is already saved in primary DB !')
@@ -144,9 +139,6 @@ async def get_search_results(chat_id, query, file_type=None, max_results=10, off
     else:
         filter = {'file_name': regex}
 
-    if file_type:
-        filter['file_type'] = file_type
-
     total_results = ((await Media.count_documents(filter))+(await Media2.count_documents(filter)))
 
     #verifies max_results is an even number or not
@@ -202,9 +194,6 @@ async def get_bad_files(query, file_type=None, filter=False):
     else:
         filter = {'file_name': regex}
 
-    if file_type:
-        filter['file_type'] = file_type
-
     cursor = Media.find(filter)
     cursor2 = Media2.find(filter)
     # Sort by recent
@@ -243,12 +232,8 @@ def encode_file_id(s: bytes) -> str:
     return base64.urlsafe_b64encode(r).decode().rstrip("=")
 
 
-def encode_file_ref(file_ref: bytes) -> str:
-    return base64.urlsafe_b64encode(file_ref).decode().rstrip("=")
-
-
 def unpack_new_file_id(new_file_id):
-    """Return file_id, file_ref"""
+    """Return file_id"""
     decoded = FileId.decode(new_file_id)
     file_id = encode_file_id(
         pack(
@@ -259,5 +244,4 @@ def unpack_new_file_id(new_file_id):
             decoded.access_hash
         )
     )
-    file_ref = encode_file_ref(decoded.file_reference)
-    return file_id, file_ref
+    return file_id

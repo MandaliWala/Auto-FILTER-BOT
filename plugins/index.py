@@ -53,30 +53,30 @@ async def index_files(bot, query):
 
 @Client.on_message(filters.private & filters.command('index'))
 async def send_for_index(bot, message):
-    vj = await bot.ask(message.chat.id, "**Now Send Me Your Channel Last Post Link Or Forward A Last Message From Your Index Channel.**")
-    if vj.text:
+    NAM = await bot.ask(message.chat.id, "**Now Send Me Your Channel Last Post Link Or Forward A Last Message From Your Index Channel.**")
+    if NAM.text:
         regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
-        match = regex.match(vj.text)
+        match = regex.match(NAM.text)
         if not match:
-            return await vj.reply('Invalid link\n\nTry again by /index')
+            return await NAM.reply('Invalid link\n\nTry again by /index')
         chat_id = match.group(4)
         last_msg_id = int(match.group(5))
         if chat_id.isnumeric():
             chat_id  = int(("-100" + chat_id))
-    elif vj.forward_from_chat.type == enums.ChatType.CHANNEL:
-        last_msg_id = vj.forward_from_message_id
-        chat_id = vj.forward_from_chat.username or vj.forward_from_chat.id
+    elif NAM.forward_from_chat.type == enums.ChatType.CHANNEL:
+        last_msg_id = NAM.forward_from_message_id
+        chat_id = NAM.forward_from_chat.username or NAM.forward_from_chat.id
     else:
         return
     try:
         await bot.get_chat(chat_id)
     except ChannelInvalid:
-        return await vj.reply('This may be a private channel / group. Make me an admin over there to index the files.')
+        return await NAM.reply('This may be a private channel / group. Make me an admin over there to index the files.')
     except (UsernameInvalid, UsernameNotModified):
-        return await vj.reply('Invalid Link specified.')
+        return await NAM.reply('Invalid Link specified.')
     except Exception as e:
         logger.exception(e)
-        return await vj.reply(f'Errors - {e}')
+        return await NAM.reply(f'Errors - {e}')
     try:
         k = await bot.get_messages(chat_id, last_msg_id)
     except:
@@ -155,7 +155,7 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                     await msg.edit(f"Successfully Cancelled!!\nCompleted in {time_taken}\n\nSaved <code>{total_files}</code> files to dataBase!\nDuplicate Files Skipped: <code>{duplicate}</code>\nDeleted Messages Skipped: <code>{deleted}</code>\nNon-Media messages skipped: <code>{no_media + unsupported}</code>(Unsupported Media - `{unsupported}` )\nErrors Occurred: <code>{errors}</code>")
                     break
                 current += 1
-                if current % 20 == 0:
+                if current % 300 == 0:
                     can = [[InlineKeyboardButton('Cancel', callback_data='index_cancel')]]
                     reply = InlineKeyboardMarkup(can)
                     await msg.edit_text(

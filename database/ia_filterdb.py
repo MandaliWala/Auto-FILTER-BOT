@@ -73,7 +73,7 @@ async def save_file(media):
     """Save file in database"""
 
     # TODO: Find better way to get same file_id for same media to avoid duplicates
-    file_id = unpack_new_file_id(media.file_id)
+    file_id, file_ref = unpack_new_file_id(media.file_id)
     file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
     try:
         if await Media.count_documents({'file_id': file_id}, limit=1):
@@ -81,9 +81,12 @@ async def save_file(media):
             return False, 0
         file = saveMedia(
             file_id=file_id,
+            file_ref=file_ref,
             file_name=file_name,
             file_size=media.file_size,
-            caption=file_caption,
+            file_type=media.file_type,
+            mime_type=media.mime_type,
+            caption=media.caption.html if media.caption else None,
         )
     except ValidationError:
         logger.exception('Error occurred while saving file in database')

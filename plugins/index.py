@@ -158,15 +158,10 @@ async def index_files_to_db(lst_msg_id, chat, msg, bot):
                 if current % 300 == 0:
                     can = [[InlineKeyboardButton('Cancel', callback_data='index_cancel')]]
                     reply = InlineKeyboardMarkup(can)
-                    try:
-                        await msg.edit_text(
+                    await msg.edit_text(
                         text=f"Total messages fetched: <code>{current}</code>\nTotal messages saved: <code>{total_files}</code>\nDuplicate Files Skipped: <code>{duplicate}</code>\nDeleted Messages Skipped: <code>{deleted}</code>\nNon-Media messages skipped: <code>{no_media + unsupported}</code>(Unsupported Media - `{unsupported}` )\nErrors Occurred: <code>{errors}</code>",
                         reply_markup=reply)
-                    except FloodWait as t:
-                        await asyncio.sleep(t.value)
-                        await msg.edit_text(
-                        text=f"Total messages fetched: <code>{current}</code>\nTotal messages saved: <code>{total_files}</code>\nDuplicate Files Skipped: <code>{duplicate}</code>\nDeleted Messages Skipped: <code>{deleted}</code>\nNon-Media messages skipped: <code>{no_media + unsupported}</code>(Unsupported Media - `{unsupported}` )\nErrors Occurred: <code>{errors}</code>",
-                        reply_markup=reply)
+                    await asyncio.sleep(2)
                 if message.empty:
                     deleted += 1
                     continue

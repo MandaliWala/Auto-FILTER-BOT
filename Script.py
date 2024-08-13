@@ -222,7 +222,7 @@ Nᴀᴍᴇ - {}"""
 
     CAPTION = """<b>{file_caption}
 
-<blockquote>𝙅𝙊𝙄𝙉 :- @MovieTimesTV</blockquote></b>""" 
+<blockquote>@MovieTimesTV</blockquote></b>""" 
 
     IMDB_TEMPLATE_TXT = """
 <b>Query: {qurey}

@@ -220,12 +220,9 @@ Nᴀᴍᴇ - {}"""
 
 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 <b>: {}</b>"""
 
-    CAPTION = """<b>{file_name}
+    CAPTION = """<b>{file_caption}
 
-╔═════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╗
-💥 𝙅𝙊𝙄𝙉 :- @MovieTimesTV 
-💥 𝙅𝙊𝙄𝙉 :- @AnimeHinofficial
-╚═════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╝</b>""" 
+<blockquote>𝙅𝙊𝙄𝙉 :- @MovieTimesTV</blockquote></b>""" 
 
     IMDB_TEMPLATE_TXT = """
 <b>Query: {qurey}
@@ -240,7 +237,7 @@ IMDb Data:
 📀 RunTime: {runtime} Minutes
 📆 Release Info : {release_date}
 🎛 Countries : <code>{countries}</code>
-
+BOT BY : @Spider_Man_02
 
 ⏰Result Shown in: {remaining_seconds} <i>seconds</i> 🔥
 

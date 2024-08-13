@@ -222,10 +222,10 @@ Nᴀᴍᴇ - {}"""
 
     CAPTION = """<b>{file_name}
 
-<blockquote>╔═════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╗
-💥 𝙅𝙊𝙄𝙉 :- @MovieTimesTV 
-💥 𝙅𝙊𝙄𝙉 :- @AnimeHinofficial
-╚═════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╝</blockquote></b>""" 
+<blockquote>
+ 𝙅𝙊𝙄𝙉 :- @MovieTimesTV 
+ 𝙅𝙊𝙄𝙉 :- @AnimeHinofficial
+</blockquote></b>""" 
 
     IMDB_TEMPLATE_TXT = """
 <b>Query: {qurey}

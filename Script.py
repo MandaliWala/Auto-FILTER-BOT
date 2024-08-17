@@ -223,8 +223,7 @@ Nᴀᴍᴇ - {}"""
     CAPTION = """<b>{file_name}
 
 <blockquote>
- 𝙅𝙊𝙄𝙉 :- @MovieTimesTV 
- 𝙅𝙊𝙄𝙉 :- @AnimeHinofficial
+ ➠ᴄʜᴀɴɴᴇʟ:  @MovieTimesTV 
 </blockquote></b>""" 
 
     IMDB_TEMPLATE_TXT = """

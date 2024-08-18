@@ -23,4 +23,4 @@ DATABASE_NAME = 'Telegram'
 COLLECTION_NAME = 'channel_files'  # If you are using the same database, then use different collection name for each bot
 
 #temp dict for storing the db uri which will be used for storing user, chat and file infos
-tempDict = {'indexDB': SECONDDB_URI}
+tempDict = {'indexDB': DATABASE_URI}

@@ -45,19 +45,16 @@ async def answer(bot, query):
 
     results = []
     if '|' in query.query:
-        string, file_type = query.query.split('|', maxsplit=1)
+        string = query.query.split('|', maxsplit=1)
         string = string.strip()
-        file_type = file_type.strip().lower()
     else:
         string = query.query.strip()
-        file_type = None
 
     offset = int(query.offset or 0)
     reply_markup = get_reply_markup(query=string)
     files, next_offset, total = await get_search_results(
                                                   chat_id,
                                                   string,
-                                                  file_type=file_type,
                                                   max_results=10,
                                                   offset=offset)
 
@@ -78,7 +75,7 @@ async def answer(bot, query):
                 title=file.file_name,
                 document_file_id=file.file_id,
                 caption=f_caption,
-                description=f'Size: {get_size(file.file_size)}\nType: {file.file_type}',
+                description=f'Size: {get_size(file.file_size)}',
                 reply_markup=reply_markup))
 
     if results:

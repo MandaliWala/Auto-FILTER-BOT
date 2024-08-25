@@ -112,9 +112,10 @@ class Database:
         count = await self.col.count_documents({})
         return count
 
-    async def add_clone_bot(self, bot_id, user_id):
+    async def add_clone_bot(self, bot_id, user_id, bot_token):
         settings = {
             'bot_id': bot_id,
+            'bot_token': bot_token,
             'user_id': user_id,
             'url': None,
             'api': None,
@@ -136,6 +137,16 @@ class Database:
 
     async def update_clone(self, user_id, user_data):
         await self.bot.update_one({"user_id": user_id}, {"$set": user_data}, upsert=True)
+
+    async def get_bot(self, bot_id):
+        bot_data = await self.bot.find_one({"bot_id": bot_id})
+        return bot_data
+
+    async def update_bot(self, bot_id, bot_data):
+        await self.bot.update_one({"bot_id": bot_id}, {"$set": bot_data}, upsert=True)
+
+    async def get_all_bots(self):
+        return self.bot.find({})
 
     async def remove_ban(self, id):
         ban_status = dict(

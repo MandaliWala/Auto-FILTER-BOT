@@ -2,13 +2,18 @@
   <img src="https://graph.org/file/14b45edf3ff4cc8d53962.jpg" alt="Stark-Filter-Bot Logo">
 </p>
 <h1 align="center">
-  VJ FILTER BOT
+  <b>N2 FILTER BOT</b>
 </h1>
 
-![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=Welcome+To+N2+Filter+Bot!)
+![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=𝗧𝗛𝗜𝗦+𝗜𝗦+N2+FILTER+BOT!;𝗖𝗕𝗥𝗘𝗔𝗧𝗘𝗗+𝗕𝗬+TONY+STARK+𝗕𝗢𝗧𝗭™;𝗔+𝗣𝗢𝗪𝗘𝗥𝗙𝗨𝗟𝗟+𝗧𝗚+𝗔𝗨𝗧𝗢𝗙𝗜𝗟𝗧𝗘𝗥+𝗕𝗢𝗧!)
 </p>
 
-## Main Feature 
+[![Stars](https://img.shields.io/github/stars/MandaliWala/Auto-FILTER-BOT?style=flat-square&color=yellow)](https://github.com/MandaliWala/Auto-FILTER-BOT/stargazers)
+[![Forks](https://img.shields.io/github/forks/MandaliWala/Auto-FILTER-BOT?style=flat-square&color=orange)](https://github.com/MandaliWala/Auto-FILTER-BOT/fork)
+[![Size](https://img.shields.io/github/repo-size/MandaliWala/Auto-FILTER-BOT?style=flat-square&color=green)](https://github.com/MandaliWala/Auto-FILTER-BOT)
+
+<details>
+<summary><b>Features</b></summary> 
 <b>
   
 - [x] Premium Plan Feature 
@@ -30,12 +35,11 @@
 - [x] Send All Button 
 - [x] Custom Tutorial Button
 - [x] Bot Pm File Auto Delete 
+</details>
 
-Join My <a href='https://telegram.dog/vj_botz'>Update Channel</a> For More Update Regarding Repo.</b>
+<details>
+<summary><b>Commands</b></summary>
 
-### How To Deploy : [Video Tutorial](https://youtu.be/J5tiWdc_AWM)
-
-## Commands
 ```
 • /index - 𝑖𝑛𝑑𝑒𝑥 𝑓𝑖𝑙𝑒 𝑓𝑟𝑜𝑚 𝑦𝑜𝑢𝑟 𝑐ℎ𝑎𝑛𝑛𝑒𝑙
 • /logs - 𝑡𝑜 𝑔𝑒𝑡 𝑡ℎ𝑒 𝑟𝑒𝑐𝑒𝑛𝑡 𝑒𝑟𝑟𝑜𝑟𝑠
@@ -103,7 +107,10 @@ Join My <a href='https://telegram.dog/vj_botz'>Update Channel</a> For More Updat
 • /totalrequests - 𝑔𝑒𝑡 𝑡𝑜𝑡𝑎𝑙 𝑛𝑢𝑚𝑏𝑒𝑟 𝑜𝑓 𝑗𝑜𝑖𝑛 𝑟𝑒𝑞𝑢𝑒𝑠𝑡 𝑓𝑟𝑜𝑚 𝑑𝑎𝑡𝑎𝑏𝑎𝑠𝑒
 ```
 
-## Variables
+</details>
+
+<details>
+<summary><b>Variables</b></summary>
 
 ### Required Variables
 * <b>`BOT_TOKEN`: Create a bot using [@BotFather](https://telegram.dog/BotFather), and get the Telegram API token.
@@ -112,6 +119,7 @@ Join My <a href='https://telegram.dog/vj_botz'>Update Channel</a> For More Updat
 * `CHANNELS`: Username or ID of channel or group. Separate multiple IDs by space
 * `ADMINS`: Username or ID of Admin. Separate multiple Admins by space
 * `DATABASE_URI`: [mongoDB](https://www.mongodb.com) URI. Get this value from [mongoDB](https://www.mongodb.com). For more help watch this [video](https://youtu.be/I36_OTWvT2w)
+* `SECONDDB_URI`: URI of the second database. Same as `DATABASE_URI` but use a different MongoDB URI.
 * `DATABASE_NAME`: Name of the database in [mongoDB](https://www.mongodb.com).
 * `LOG_CHANNEL` : A channel to log the activities of bot. Make sure bot is an admin in the channel.</b>
 
@@ -119,7 +127,7 @@ Join My <a href='https://telegram.dog/vj_botz'>Update Channel</a> For More Updat
 * <b>`PICS`: Telegraph links of images to show in start message.( Multiple images can be used separated by space )
 * `FILE_STORE_CHANNEL`: Channel from were file store links of posts should be made.Separate multiple IDs by space
 * Check [info.py](https://github.com/VJBots/VJ-Filter-Bot/blob/Tech_VJ/info.py) for more optional variables.</b>
-
+</details>
 
 <details><summary><b>Deploy To Heroku</b></summary>
 <p>
@@ -171,7 +179,7 @@ Use these settings when adding a monitor:</b>
 <details><summary><b>Deploy To VPS</summary>
 
 
-`git clone https://github.com/VJBots/VJ-Filter-Bot`
+`git clone https://github.com/MandaliWala/Auto-Filter-Bot`
 
 Install Packages
 
@@ -186,18 +194,23 @@ Edit info.py with variables as given below then run bot
 
 <hr>
 
+## TELAGRAM SUPPORT 
+
+* [![Tony Stark BOTZ](https://img.shields.io/static/v1?label=Tony+Stark&message=BOTZ&color=critical)](https://t.me/TonyStark_Botz)
+* [![Tony Stark BOTZ Support](https://img.shields.io/static/v1?label=Tony+Stark&message=BOTZ+Support&color=critical)](https://t.me/TonyStarkBotzXSupport)
 
 ## Thanks to 
  - <b>Thanks To [Pyrogram Library](https://github.com/pyrogram/pyrogram) & [Pyrofork Library](https://github.com/Mayuri-Chan/pyrofork)
- - Thanks To [Tech VJ](https://youtube.com/@Tech_VJ) To Modify And Add Amazing Feature In The Repo
+ - Thanks To [Tony Stark Botz](https://t.me/TonyStark_Botz) To Modify And Add Amazing Feature In The Repo
+ - Thanks To [Peter](https://t.me/Spider_Man_02) To Modify And Add Amazing Feature In The Repo
  - Thanks To [Eva Marie](https://t.me/TeamEvamaria) For Base Repo
  - Thanks To All Everyone In This Journey</b>
 
 ## Note 🏷️
  
-* [![Contact Developer](https://img.shields.io/static/v1?label=Contact+Developer&message=On+Telegram&color=critical)](https://telegram.me/KingVJ01)
+* [![Contact Developer](https://img.shields.io/static/v1?label=Contact+Developer&message=On+Telegram&color=critical)](https://telegram.me/Spider_Man_02)
 
-<b>[Note To A So Called Dev](https://telegram.dog/vj_botz): 
+<b>[Note To So Called Devs](https://t.me/TonyStark_Botz): 
 
 Fork The Repo And Edit As Per Your Needs.</b>
 

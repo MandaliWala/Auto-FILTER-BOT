@@ -1,7 +1,3 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import re
 from pymongo.errors import DuplicateKeyError
 import motor.motor_asyncio
@@ -58,11 +54,6 @@ class Database:
         'fsub': None,
         'tutorial': TUTORIAL,
         'is_tutorial': IS_TUTORIAL,
-        'vj': None,
-        'techvj': None,
-        'tech_vj': None,
-        'vjtech': None,
-        'vj_tech': None
     }
     
     def __init__(self, uri, database_name):

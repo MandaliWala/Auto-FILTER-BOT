@@ -1,5 +1,5 @@
 {
-    "name": "VJ-FILTER-BOT",
+    "name": "N2-FILTER-BOT",
     "description": "This is auto filter bot with many advanced features.",
     "stack": "container",
     "keywords": [
@@ -15,8 +15,8 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/VJBots/VJ-FILTER-BOT",
-    "repository": "https://github.com/VJBots/VJ-FILTER-BOT",
+    "website": "https://github.com/MandaliWala/N2-FILTER-BOT",
+    "repository": "https://github.com/MandaliWala/N2-FILTER-BOT",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",

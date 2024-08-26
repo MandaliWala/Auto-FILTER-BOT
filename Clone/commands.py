@@ -8,7 +8,7 @@ from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import *
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db
-from CloneTechVJ.database.clone_bot_userdb import clonedb
+from Clone.database.clone_bot_userdb import clonedb
 from info import *
 from shortzy import Shortzy
 from utils import get_size, temp, get_seconds, get_clone_shortlink
@@ -94,18 +94,18 @@ async def start(client, message):
             return await message.reply('<b><i>No such file exist.</b></i>')
         filesarr = []
         for file in files:
-            vj_file_id = file.file_id
-            k = await temp.BOT.send_cached_media(chat_id=PUBLIC_FILE_CHANNEL, file_id=vj_file_id)
-            vj = await client.get_messages(PUBLIC_FILE_CHANNEL, k.id)
-            mg = getattr(vj, vj.media.value)
+            nam_file_id = file.file_id
+            k = await temp.BOT.send_cached_media(chat_id=PUBLIC_FILE_CHANNEL, file_id=nam_file_id)
+            nam = await client.get_messages(PUBLIC_FILE_CHANNEL, k.id)
+            mg = getattr(nam, nam.media.value)
             file_id = mg.file_id
-            files_ = await get_file_details(vj_file_id)
+            files_ = await get_file_details(nam_file_id)
             files1 = files_[0]
-            title = '@VJ_Botz  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1.file_name.split()))
+            title = '@TonyStark_Botz  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1.file_name.split()))
             size=get_size(files1.file_size)
             f_caption=files1.caption
             if f_caption is None:
-                f_caption = f"@VJ_Botz  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1.file_name.split()))}"
+                f_caption = f"@TonyStark_Botz  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1.file_name.split()))}"
             if cd["update_channel_link"] != None:
                 up = cd["update_channel_link"]
                 button = [[
@@ -150,8 +150,8 @@ async def start(client, message):
         pre, file_id = ((base64.urlsafe_b64decode(data + "=" * (-len(data) % 4))).decode("ascii")).split("_", 1)
         try:
             k = await temp.BOT.send_cached_media(chat_id=PUBLIC_FILE_CHANNEL, file_id=file_id)
-            vj = await client.get_messages(PUBLIC_FILE_CHANNEL, k.id)
-            mg = getattr(vj, vj.media.value)
+            nam = await client.get_messages(PUBLIC_FILE_CHANNEL, k.id)
+            mg = getattr(nam, nam.media.value)
             file_id = mg.file_id
             if cd["update_channel_link"] != None:
                 up = cd["update_channel_link"]
@@ -169,7 +169,7 @@ async def start(client, message):
             )
             filetype = msg.media
             file = getattr(msg, filetype.value)
-            title = '@VJ_Botz  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split()))
+            title = '@TonyStark_Botz  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), file.file_name.split()))
             size=get_size(file.file_size)
             f_caption = f"<code>{title}</code>"
             await msg.edit_caption(
@@ -185,11 +185,11 @@ async def start(client, message):
             pass
         return await message.reply('No such file exist.')
     files = files_[0]
-    title = '@VJ_Botz  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
+    title = '@TonyStark_Botz  ' + ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))
     size=get_size(files.file_size)
     f_caption=files.caption
     if f_caption is None:
-        f_caption = f"@VJ_Botz  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
+        f_caption = f"@TonyStark_Botz  {' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files.file_name.split()))}"
     if cd["update_channel_link"] != None:
         up = cd["update_channel_link"]
         button = [[
@@ -199,8 +199,8 @@ async def start(client, message):
     else:
         reply_markup=None
     k = await temp.BOT.send_cached_media(chat_id=PUBLIC_FILE_CHANNEL, file_id=file_id)
-    vj = await client.get_messages(PUBLIC_FILE_CHANNEL, k.id)
-    m = getattr(vj, vj.media.value)
+    nam = await client.get_messages(PUBLIC_FILE_CHANNEL, k.id)
+    m = getattr(nam, nam.media.value)
     file_id = m.file_id
     msg = await client.send_cached_media(
         chat_id=message.from_user.id,
@@ -225,7 +225,7 @@ async def settings(client, message):
     api = await client.ask(message.chat.id, "<b>Now Send Your Api</b>")
     try:
         shortzy = Shortzy(api_key=api.text, base_site=url.text)
-        link = 'https://t.me/VJ_Botz'
+        link = 'https://t.me/TonyStark_Botz'
         await shortzy.convert(link)
     except Exception as e:
         await message.reply(f"**Error In Converting Link**\n\n<code>{e}</code>\n\n**Start The Process Again By - /settings**", reply_markup=InlineKeyboardMarkup(btn))

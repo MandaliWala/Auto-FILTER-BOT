@@ -26,22 +26,23 @@ from typing import Union, Optional, AsyncGenerator
 from Script import script 
 from datetime import date, datetime 
 from aiohttp import web
+from sample_info import tempDict
 from plugins import web_server
 
-from TechVJ.bot import TechVJBot
-from TechVJ.util.keepalive import ping_server
-from TechVJ.bot.clients import initialize_clients
+from Naman.bot import NamanBot
+from Naman.util.keepalive import ping_server
+from Naman.bot.clients import initialize_clients
 
 ppath = "plugins/*.py"
 files = glob.glob(ppath)
-TechVJBot.start()
+NamanBot.start()
 loop = asyncio.get_event_loop()
 
 
 async def start():
     print('\n')
     print('Initalizing Your Bot')
-    bot_info = await TechVJBot.get_me()
+    bot_info = await NamanBot.get_me()
     await initialize_clients()
     for name in files:
         with open(name) as a:
@@ -53,7 +54,7 @@ async def start():
             load = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(load)
             sys.modules["plugins." + plugin_name] = load
-            print("Tech VJ Imported => " + plugin_name)
+            print("Naman Imported => " + plugin_name)
     if ON_HEROKU:
         asyncio.create_task(ping_server())
     b_users, b_chats = await db.get_banned()
@@ -74,7 +75,7 @@ async def start():
     else:
         logging.info(f"Since primary DB have enough space ({free_dbSize}MB) left, It will be used for storing datas.")
     await choose_mediaDB()
-    me = await TechVJBot.get_me()
+    me = await NamanBot.get_me()
     temp.ME = me.id
     temp.U_NAME = me.username
     temp.B_NAME = me.first_name
@@ -84,7 +85,7 @@ async def start():
     today = date.today()
     now = datetime.now(tz)
     time = now.strftime("%H:%M:%S %p")
-    await TechVJBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(temp.U_NAME, temp.B_NAME, today, time))
+    await NamanBot.send_message(chat_id=LOG_CHANNEL, text=script.RESTART_TXT.format(temp.U_NAME, temp.B_NAME, today, time))
     app = web.AppRunner(await web_server())
     await app.setup()
     bind_address = "0.0.0.0"

@@ -682,7 +682,7 @@ async def channel_info(bot, message):
 @Client.on_message(filters.command('logs') & filters.user(ADMINS))
 async def log_file(bot, message):
     try:
-        await message.reply_document('TELEGRAM BOT.LOG')
+        await message.reply_document('Naruto.LOG')
     except Exception as e:
         await message.reply(str(e))
 

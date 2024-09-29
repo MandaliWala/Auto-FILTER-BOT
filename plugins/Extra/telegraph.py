@@ -8,6 +8,8 @@ from utils import get_file_id
 
 @Client.on_message(filters.command("telegraph") & filters.private)
 async def telegraph_upload(bot, update):
+    # Service Stopped
+    return await update.reply("🥲 This service is stopped due to https://t.me/durov/343")
     t_msg = await bot.ask(chat_id = update.from_user.id, text = "Now Send Me Your Photo Or Video Under 5MB To Get Telegraph Link.")
   #  if not replied:
   #      await update.reply_text("𝚁𝙴𝙿𝙻𝚈 𝚃𝙾 𝙰 𝙿𝙷𝙾𝚃𝙾 𝙾𝚁 𝚅𝙸𝙳𝙴𝙾 𝚄𝙽𝙳𝙴𝚁 𝟻𝙼𝙱.")

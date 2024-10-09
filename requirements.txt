@@ -29,7 +29,7 @@ motor==2.5.1
 marshmallow==3.14.1 
 umongo==3.0.1 
 PyLeaves==1.0.2
-youtube-search-python
+youtube-search-python==1.6.6
 opencv-python-headless==4.7.0.68 
 googletrans==3.1.0a0 
 telegraph==2.2.0 

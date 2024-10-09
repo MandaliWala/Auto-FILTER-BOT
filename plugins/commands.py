@@ -688,11 +688,11 @@ async def log_file(bot, message):
 
 @Client.on_message(filters.command('delete') & filters.user(ADMINS))
 async def delete(bot, message):
-    reply = message.reply_to_message
-    if reply and reply.media:
+    reply = await bot.ask(message.from_user.id, "Now Send Me Media Which You Want to delete")
+    if reply.media:
         msg = await message.reply("Processing...⏳", quote=True)
     else:
-        await message.reply('Reply to file with /delete which you want to delete', quote=True)
+        await message.reply('Send Me Video, File Or Document.', quote=True)
         return
 
     for file_type in ("document", "video", "audio"):

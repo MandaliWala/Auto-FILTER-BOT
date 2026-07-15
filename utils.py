@@ -1,5 +1,6 @@
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid, MessageNotModified
 from info import  *
+# pyrefly: ignore [missing-import]
 from imdbkit import IMDBKit 
 import asyncio
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
@@ -56,6 +57,8 @@ class temp(object):
 
     
 async def is_check_admin(bot, chat_id, user_id):
+    if user_id and user_id in ADMINS:
+        return True
     try:
         member = await bot.get_chat_member(chat_id, user_id)
         return member.status in [enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER]

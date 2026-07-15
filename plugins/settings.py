@@ -6,6 +6,17 @@ from info import *
 from utils import get_settings, save_group_settings, delete_group_setting, MAX_B_TN, temp, is_check_admin
 from Script import script
 from logging_helper import LOGGER
+from database.users_chats_db import db
+
+async def get_invite_link(client, grp_id):
+    try:
+        return await client.export_chat_invite_link(int(grp_id))
+    except Exception:
+        try:
+            chat = await client.get_chat(int(grp_id))
+            return chat.invite_link or "None"
+        except Exception:
+            return "None"
 
 async def group_setting_buttons(grp_id):
     settings = await get_settings(grp_id)
@@ -70,7 +81,7 @@ async def open_settings_group(client, query):
     if (
             st.status != enums.ChatMemberStatus.ADMINISTRATOR
             and st.status != enums.ChatMemberStatus.OWNER
-            and str(userid) not in ADMINS
+            and userid not in ADMINS
     ):
         await query.answer("ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛꜱ ᴛᴏ ᴅᴏ ᴛʜɪꜱ !", show_alert=True)
         return
@@ -103,7 +114,7 @@ async def open_settings_pm(client, query):
     if (
             st.status != enums.ChatMemberStatus.ADMINISTRATOR
             and st.status != enums.ChatMemberStatus.OWNER
-            and str(userid) not in ADMINS
+            and userid not in ADMINS
     ):
         await query.answer("ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ꜱᴜꜰꜰɪᴄɪᴀɴᴛ ʀɪɢʜᴛꜱ ᴛᴏ ᴅᴏ ᴛʜɪꜱ !", show_alert=True)
         return
@@ -380,10 +391,10 @@ async def remove_fsub_ui(client, query):
 async def change_log(client, query):
     grp_id = query.data.split("#")[1]
     user_id = query.from_user.id if query.from_user else None
-    silentx = await client.get_chat(int(grp_id))
-    invite_link = await client.export_chat_invite_link(grp_id)
     if not await is_check_admin(client, int(grp_id), user_id):
         return await query.answer("<b>ɴᴇᴇᴅ ᴛᴏ ʙᴇ ᴀᴅᴍɪɴ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ✅.</b>", show_alert=True)
+    silentx = await client.get_chat(int(grp_id))
+    invite_link = await get_invite_link(client, grp_id)
     settings = await get_settings(int(grp_id))
     log_channel = settings.get(f'log')
     log_text = f"<code>{log_channel}</code>" if log_channel else "ɴᴏᴛ ꜱᴇᴛ"
@@ -441,11 +452,11 @@ async def remove_caption(client, query):
 async def change_caption(client, query):
     grp_id = query.data.split("#")[1]
     user_id = query.from_user.id if query.from_user else None
-    silentx = await client.get_chat(int(grp_id))
-    invite_link = await client.export_chat_invite_link(grp_id)
-    title = silentx.title
     if not await is_check_admin(client, int(grp_id), user_id):
         return await query.answer("<b>ɴᴇᴇᴅ ᴛᴏ ʙᴇ ᴀᴅᴍɪɴ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ✅.</b>", show_alert=True)
+    silentx = await client.get_chat(int(grp_id))
+    invite_link = await get_invite_link(client, grp_id)
+    title = silentx.title
     settings = await get_settings(int(grp_id))
     current_caption = settings.get(f'caption')
     caption_text = f"<code>{current_caption}</code>" if current_caption else "ɴᴏᴛ ꜱᴇᴛ"
@@ -487,6 +498,7 @@ async def toggle_verify(client, query):
         return await query.answer("<b>ɴᴇᴇᴅ ᴛᴏ ʙᴇ ᴀᴅᴍɪɴ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ✅.</b>", show_alert=True)
     new_status = not (status == "True")
     await save_group_settings(int(grp_id), set_type, new_status)
+    await query.answer("ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ꜱᴛᴀᴛᴜꜱ ᴄʜᴀɴɢᴇᴅ ✅")
 
     # Reload verification settings menu
     await verification_settings(client, query)
@@ -559,10 +571,10 @@ async def set_shortener(client, query):
     shortner_num = query.data.split("#")[0][-1]
     grp_id = query.data.split("#")[1]
     user_id = query.from_user.id if query.from_user else None
-    silentx = await client.get_chat(int(grp_id))
-    invite_link = await client.export_chat_invite_link(grp_id)
     if not await is_check_admin(client, int(grp_id), user_id):
         return await query.answer("<b>ɴᴇᴇᴅ ᴛᴏ ʙᴇ ᴀᴅᴍɪɴ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ✅.</b>", show_alert=True)
+    silentx = await client.get_chat(int(grp_id))
+    invite_link = await get_invite_link(client, grp_id)
     settings = await get_settings(int(grp_id))
     suffix = "" if shortner_num == "1" else f"_{'two' if shortner_num == '2' else 'three'}"
     current_url = settings.get(f'shortner{suffix}', "ʏᴏᴜ ᴅɪᴅɴ'ᴛ ꜱᴇᴛ ᴀɴᴅ ᴠᴀʟᴜᴇ ꜱᴏ ᴜꜱɪɴɢ ᴅᴇꜰᴀᴜʟᴛ ᴠᴀʟᴜᴇꜱ")
@@ -688,10 +700,10 @@ async def set_time(client, query):
     time_num = query.data.split("#")[0][-1]
     grp_id = query.data.split("#")[1]
     user_id = query.from_user.id if query.from_user else None
-    silentx = await client.get_chat(int(grp_id))
-    invite_link = await client.export_chat_invite_link(grp_id)
     if not await is_check_admin(client, int(grp_id), user_id):
         return await query.answer("<b>ɴᴇᴇᴅ ᴛᴏ ʙᴇ ᴀᴅᴍɪɴ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ✅.</b>", show_alert=True)
+    silentx = await client.get_chat(int(grp_id))
+    invite_link = await get_invite_link(client, grp_id)
 
     settings = await get_settings(int(grp_id))
     if time_num == "1":
@@ -808,10 +820,10 @@ async def set_tutorial(client, query):
     tutorial_num = query.data.split("#")[0][-1]
     grp_id = query.data.split("#")[1]
     user_id = query.from_user.id if query.from_user else None
-    silentx = await client.get_chat(int(grp_id))
-    invite_link = await client.export_chat_invite_link(grp_id)
     if not await is_check_admin(client, int(grp_id), user_id):
         return await query.answer("<b>ɴᴇᴇᴅ ᴛᴏ ʙᴇ ᴀᴅᴍɪɴ ᴛᴏ ᴜꜱᴇ ᴛʜɪꜱ ✅.</b>", show_alert=True)
+    silentx = await client.get_chat(int(grp_id))
+    invite_link = await get_invite_link(client, grp_id)
     settings = await get_settings(int(grp_id))
     suffix = "" if tutorial_num == "1" else f"_{'2' if tutorial_num == '2' else '3'}"
     tutorial_url = settings.get(f'tutorial{suffix}', "ʏᴏᴜ ᴅɪᴅɴ'ᴛ ꜱᴇᴛ ᴀɴᴅ ᴠᴀʟᴜᴇ ꜱᴏ ᴜꜱɪɴɢ ᴅᴇꜰᴀᴜʟᴛ ᴠᴀʟᴜᴇꜱ")

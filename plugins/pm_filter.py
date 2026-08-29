@@ -792,9 +792,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             LOGGER.error(e)
                     
     elif query.data == "me":
-        buttons = [
+        buttons = [[
             InlineKeyboardButton('⇋ ʙᴀᴄᴋ ᴛᴏ ʜᴏᴍᴇ ⇋', callback_data='start')
-        ]
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.ABOUT_TXT.format(temp.U_NAME, temp.B_NAME, OWNER_LNK),
